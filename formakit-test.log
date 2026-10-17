@@ -1,0 +1,159 @@
+Building for debugging...
+[0/7] /Users/runner/work/Spor/Spor/Packages/FormaKit/.build/arm64-apple-macosx/debug/FormaKitPackageTests.derived/runner.swift
+[1/7] Write sources
+[4/7] Write swift-version-1977FEB4D2752686.txt
+[6/23] Compiling FormaKit ProgramGenerator.swift
+[7/23] Compiling FormaKit ProgressionEngine.swift
+[8/23] Compiling FormaKit RamadanCalculator.swift
+[9/23] Compiling FormaKit ReadinessEngine.swift
+[10/23] Compiling FormaKit RecoveryEngine.swift
+[11/23] Compiling FormaKit StrengthMath.swift
+[12/23] Compiling FormaKit Enums.swift
+[13/30] Emitting module FormaKit
+[14/30] Compiling FormaKit ExerciseCatalog.swift
+[15/30] Compiling FormaKit FoodDatabase.swift
+[16/30] Compiling FormaKit ProgramLibrary.swift
+[17/30] Compiling FormaKit DateHelpers.swift
+[18/30] Compiling FormaKit Gamification.swift
+[19/30] Compiling FormaKit HydrationEngine.swift
+[20/30] Compiling FormaKit NutritionEngine.swift
+[21/30] Compiling FormaKit OpenFoodFacts.swift
+[22/30] Compiling FormaKit Exercise.swift
+[23/30] Compiling FormaKit Nutrition.swift
+[24/30] Compiling FormaKit Profile.swift
+[25/30] Compiling FormaKit Workout.swift
+[26/30] Compiling FormaKit FormaData.swift
+[27/30] Compiling FormaKit FormaStorage.swift
+[28/30] Compiling FormaKit WatchPayload.swift
+[29/32] Compiling FormaKitTests EngineTests.swift
+[30/32] Emitting module FormaKitTests
+[31/34] Emitting module FormaKitPackageTests
+[32/34] Compiling FormaKitPackageTests runner.swift
+[32/34] Write Objects.LinkFileList
+[33/34] Linking FormaKitPackageTests
+Build complete! (18.15s)
+Test Suite 'All tests' started at 2026-10-17 11:48:55.697.
+Test Suite 'FormaKitPackageTests.xctest' started at 2026-10-17 11:48:55.699.
+Test Suite 'CatalogTests' started at 2026-10-17 11:48:55.699.
+Test Case '-[FormaKitTests.CatalogTests testEveryExerciseHasImageAndCues]' started.
+Test Case '-[FormaKitTests.CatalogTests testEveryExerciseHasImageAndCues]' passed (0.002 seconds).
+Test Case '-[FormaKitTests.CatalogTests testEveryMuscleHasAnExercise]' started.
+Test Case '-[FormaKitTests.CatalogTests testEveryMuscleHasAnExercise]' passed (0.001 seconds).
+Test Case '-[FormaKitTests.CatalogTests testExerciseIDsAreUnique]' started.
+Test Case '-[FormaKitTests.CatalogTests testExerciseIDsAreUnique]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.CatalogTests testFoodIDsUniqueAndSearch]' started.
+Test Case '-[FormaKitTests.CatalogTests testFoodIDsUniqueAndSearch]' passed (0.003 seconds).
+Test Case '-[FormaKitTests.CatalogTests testFoodMacrosAreConsistent]' started.
+Test Case '-[FormaKitTests.CatalogTests testFoodMacrosAreConsistent]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.CatalogTests testGeneratorPreferencesExist]' started.
+Test Case '-[FormaKitTests.CatalogTests testGeneratorPreferencesExist]' passed (0.005 seconds).
+Test Case '-[FormaKitTests.CatalogTests testHomeProgramWorksWithHomeEquipment]' started.
+Test Case '-[FormaKitTests.CatalogTests testHomeProgramWorksWithHomeEquipment]' passed (0.001 seconds).
+Test Case '-[FormaKitTests.CatalogTests testProgramsReferenceExistingExercises]' started.
+Test Case '-[FormaKitTests.CatalogTests testProgramsReferenceExistingExercises]' passed (0.005 seconds).
+Test Suite 'CatalogTests' passed at 2026-10-17 11:48:55.717.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.017 (0.019) seconds
+Test Suite 'GeneratorTests' started at 2026-10-17 11:48:55.717.
+Test Case '-[FormaKitTests.GeneratorTests testAvoidsFatiguedMuscles]' started.
+Test Case '-[FormaKitTests.GeneratorTests testAvoidsFatiguedMuscles]' passed (0.001 seconds).
+Test Case '-[FormaKitTests.GeneratorTests testFocusMuscleIncluded]' started.
+Test Case '-[FormaKitTests.GeneratorTests testFocusMuscleIncluded]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.GeneratorTests testFreshUserGetsFullBody]' started.
+Test Case '-[FormaKitTests.GeneratorTests testFreshUserGetsFullBody]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.GeneratorTests testRespectsEquipment]' started.
+Test Case '-[FormaKitTests.GeneratorTests testRespectsEquipment]' passed (0.000 seconds).
+Test Suite 'GeneratorTests' passed at 2026-10-17 11:48:55.720.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'MiscTests' started at 2026-10-17 11:48:55.720.
+Test Case '-[FormaKitTests.MiscTests testDataSurvivesRoundTripAndMissingFields]' started.
+Test Case '-[FormaKitTests.MiscTests testDataSurvivesRoundTripAndMissingFields]' passed (0.002 seconds).
+Test Case '-[FormaKitTests.MiscTests testInboxAppliesOnce]' started.
+Test Case '-[FormaKitTests.MiscTests testInboxAppliesOnce]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.MiscTests testLevels]' started.
+Test Case '-[FormaKitTests.MiscTests testLevels]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.MiscTests testOpenFoodFactsParse]' started.
+Test Case '-[FormaKitTests.MiscTests testOpenFoodFactsParse]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.MiscTests testRamadanTimesIstanbul]' started.
+Test Case '-[FormaKitTests.MiscTests testRamadanTimesIstanbul]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.MiscTests testReadiness]' started.
+Test Case '-[FormaKitTests.MiscTests testReadiness]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.MiscTests testStorageSaveLoad]' started.
+Test Case '-[FormaKitTests.MiscTests testStorageSaveLoad]' passed (0.004 seconds).
+Test Case '-[FormaKitTests.MiscTests testStreaks]' started.
+Test Case '-[FormaKitTests.MiscTests testStreaks]' passed (0.000 seconds).
+Test Suite 'MiscTests' passed at 2026-10-17 11:48:55.728.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'NutritionTests' started at 2026-10-17 11:48:55.728.
+Test Case '-[FormaKitTests.NutritionTests testAdaptiveExpenditureFindsMaintenance]' started.
+Test Case '-[FormaKitTests.NutritionTests testAdaptiveExpenditureFindsMaintenance]' passed (0.001 seconds).
+Test Case '-[FormaKitTests.NutritionTests testFatLossDeficitIsModerate]' started.
+Test Case '-[FormaKitTests.NutritionTests testFatLossDeficitIsModerate]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.NutritionTests testMacrosAddUpToCalories]' started.
+Test Case '-[FormaKitTests.NutritionTests testMacrosAddUpToCalories]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.NutritionTests testManualTargetsWin]' started.
+Test Case '-[FormaKitTests.NutritionTests testManualTargetsWin]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.NutritionTests testMifflinStJeor]' started.
+Test Case '-[FormaKitTests.NutritionTests testMifflinStJeor]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.NutritionTests testOverweightProteinUsesReferenceWeight]' started.
+Test Case '-[FormaKitTests.NutritionTests testOverweightProteinUsesReferenceWeight]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.NutritionTests testProteinWithinISSNRange]' started.
+Test Case '-[FormaKitTests.NutritionTests testProteinWithinISSNRange]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.NutritionTests testWeightTrendSmoothsNoise]' started.
+Test Case '-[FormaKitTests.NutritionTests testWeightTrendSmoothsNoise]' passed (0.001 seconds).
+Test Suite 'NutritionTests' passed at 2026-10-17 11:48:55.731.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'RecoveryTests' started at 2026-10-17 11:48:55.731.
+Test Case '-[FormaKitTests.RecoveryTests testFailureSetsFatigueMore]' started.
+Test Case '-[FormaKitTests.RecoveryTests testFailureSetsFatigueMore]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testFatiguedRightAfterHeavySession]' started.
+Test Case '-[FormaKitTests.RecoveryTests testFatiguedRightAfterHeavySession]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testFreshWhenNoTraining]' started.
+Test Case '-[FormaKitTests.RecoveryTests testFreshWhenNoTraining]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testRecoversWithinThreeDays]' started.
+Test Case '-[FormaKitTests.RecoveryTests testRecoversWithinThreeDays]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testRunningFatiguesLegs]' started.
+Test Case '-[FormaKitTests.RecoveryTests testRunningFatiguesLegs]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testSecondaryMuscleLessFatigued]' started.
+Test Case '-[FormaKitTests.RecoveryTests testSecondaryMuscleLessFatigued]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testSorenessOverridesEstimate]' started.
+Test Case '-[FormaKitTests.RecoveryTests testSorenessOverridesEstimate]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.RecoveryTests testWeeklyVolumeCountsFractionalSets]' started.
+Test Case '-[FormaKitTests.RecoveryTests testWeeklyVolumeCountsFractionalSets]' passed (0.000 seconds).
+Test Suite 'RecoveryTests' passed at 2026-10-17 11:48:55.733.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'StrengthTests' started at 2026-10-17 11:48:55.733.
+Test Case '-[FormaKitTests.StrengthTests testDeloadAfterTwoFailedSessions]' started.
+Test Case '-[FormaKitTests.StrengthTests testDeloadAfterTwoFailedSessions]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testLowReadinessHolds]' started.
+Test Case '-[FormaKitTests.StrengthTests testLowReadinessHolds]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testOneRepMax]' started.
+Test Case '-[FormaKitTests.StrengthTests testOneRepMax]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testPlates]' started.
+Test Case '-[FormaKitTests.StrengthTests testPlates]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testProgressionAddsRepsOtherwise]' started.
+Test Case '-[FormaKitTests.StrengthTests testProgressionAddsRepsOtherwise]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testProgressionIncreasesWhenTopOfRangeHit]' started.
+Test Case '-[FormaKitTests.StrengthTests testProgressionIncreasesWhenTopOfRangeHit]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testRecordsDetected]' started.
+Test Case '-[FormaKitTests.StrengthTests testRecordsDetected]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.StrengthTests testWarmupsBelowWorkingWeight]' started.
+Test Case '-[FormaKitTests.StrengthTests testWarmupsBelowWorkingWeight]' passed (0.000 seconds).
+Test Suite 'StrengthTests' passed at 2026-10-17 11:48:55.735.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'SupplementTests' started at 2026-10-17 11:48:55.735.
+Test Case '-[FormaKitTests.SupplementTests testCreatineDoseRange]' started.
+Test Case '-[FormaKitTests.SupplementTests testCreatineDoseRange]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.SupplementTests testCreatineSaturationTimeline]' started.
+Test Case '-[FormaKitTests.SupplementTests testCreatineSaturationTimeline]' passed (0.000 seconds).
+Test Case '-[FormaKitTests.SupplementTests testHydrationTargets]' started.
+Test Case '-[FormaKitTests.SupplementTests testHydrationTargets]' passed (0.000 seconds).
+Test Suite 'SupplementTests' passed at 2026-10-17 11:48:55.736.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'FormaKitPackageTests.xctest' passed at 2026-10-17 11:48:55.736.
+	 Executed 47 tests, with 0 failures (0 unexpected) in 0.031 (0.037) seconds
+Test Suite 'All tests' passed at 2026-10-17 11:48:55.736.
+	 Executed 47 tests, with 0 failures (0 unexpected) in 0.031 (0.039) seconds
+◇ Test run started.
+↳ Testing Library Version: 1501
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.
