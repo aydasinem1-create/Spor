@@ -33,6 +33,8 @@ extension AppModel {
         update { $0.activeWorkout = session }
         restTimer = RestTimerState()
         LiveActivityService.shared.start(session: session, model: self)
+        WatchSync.shared.startWatchWorkout()
+        WatchSync.shared.push(model: self)
         Haptics.success()
     }
 

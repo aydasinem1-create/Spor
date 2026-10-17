@@ -155,6 +155,15 @@ final class HealthService {
         }
     }
 
+    /// Telefonda antrenman başlayınca saat uygulamasını açar (nabız ölçümü için).
+    func startWatchApp() {
+        guard isAvailable else { return }
+        let c = HKWorkoutConfiguration()
+        c.activityType = .traditionalStrengthTraining
+        c.locationType = .indoor
+        store.startWatchApp(with: c) { _, _ in }
+    }
+
     // MARK: Yazma
 
     private func save(_ id: HKQuantityTypeIdentifier, value: Double, unit: HKUnit, date: Date, enabled: Bool) {

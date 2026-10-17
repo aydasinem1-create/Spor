@@ -1,0 +1,191 @@
+name: Forma
+options:
+  bundleIdPrefix: io.github.aydasinem1create
+  deploymentTarget:
+    iOS: "17.0"
+    watchOS: "10.0"
+  developmentLanguage: tr
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+configFiles:
+  Debug: Config.xcconfig
+  Release: Config.xcconfig
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: NO
+    SWIFT_EMIT_LOC_STRINGS: NO
+
+packages:
+  FormaKit:
+    path: Packages/FormaKit
+
+targets:
+  Forma:
+    type: application
+    platform: iOS
+    sources:
+      - path: App/Sources
+      - path: Shared
+      - path: App/Resources/Assets.xcassets
+      - path: App/Resources/Fonts
+        buildPhase: resources
+      - path: App/Resources/ExerciseImages
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: FormaKit
+      - target: FormaWidgets
+        embed: true
+        codeSign: true
+      - target: FormaWatch
+    entitlements:
+      path: App/Forma.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - $(APP_GROUP_ID)
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Forma
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: tr
+        LSRequiresIPhoneOS: true
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIUserInterfaceStyle: Dark
+        NSSupportsLiveActivities: true
+        FormaAppGroup: $(APP_GROUP_ID)
+        UIAppFonts:
+          - SpaceGrotesk-Medium.ttf
+          - SpaceGrotesk-SemiBold.ttf
+          - SpaceGrotesk-Bold.ttf
+          - DMSans-Regular.ttf
+          - DMSans-Medium.ttf
+          - DMSans-SemiBold.ttf
+          - DMSans-Bold.ttf
+        CFBundleURLTypes:
+          - CFBundleURLName: forma
+            CFBundleURLSchemes: [forma]
+        NSHealthShareUsageDescription: Forma; kilo, uyku, nabız ve diğer antrenmanlarını okuyarak hedeflerini ve hazır olma skorunu hesaplar.
+        NSHealthUpdateUsageDescription: Forma; su, besin, kilo ve antrenmanlarını Apple Sağlık'a kaydeder.
+        NSCameraUsageDescription: Barkod okutmak ve ilerleme fotoğrafı çekmek için kamera kullanılır.
+        NSPhotoLibraryUsageDescription: İlerleme fotoğrafı seçmek için fotoğraf arşivine erişilir.
+        NSLocationWhenInUseUsageDescription: Ramazan modunda iftar ve imsak vakitlerini konumuna göre hesaplamak için kullanılır.
+        NSUserActivityTypes: []
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).forma
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+
+  FormaWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widgets
+      - path: Shared
+      - path: App/Resources/Fonts
+        buildPhase: resources
+    dependencies:
+      - package: FormaKit
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    entitlements:
+      path: Widgets/FormaWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - $(APP_GROUP_ID)
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Forma
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+        FormaAppGroup: $(APP_GROUP_ID)
+        UIAppFonts:
+          - SpaceGrotesk-Medium.ttf
+          - SpaceGrotesk-SemiBold.ttf
+          - SpaceGrotesk-Bold.ttf
+          - DMSans-Regular.ttf
+          - DMSans-Medium.ttf
+          - DMSans-SemiBold.ttf
+          - DMSans-Bold.ttf
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).forma.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        SKIP_INSTALL: YES
+
+  FormaWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: Watch
+    dependencies:
+      - package: FormaKit
+    entitlements:
+      path: Watch/FormaWatch.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+    info:
+      path: Watch/Info.plist
+      properties:
+        CFBundleDisplayName: Forma
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: $(BUNDLE_ID_PREFIX).forma
+        WKBackgroundModes: [workout-processing]
+        NSHealthShareUsageDescription: Forma antrenman sırasında nabzını gösterir.
+        NSHealthUpdateUsageDescription: Forma antrenmanını Apple Sağlık'a kaydeder.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).forma.watchkitapp
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "4"
+        SKIP_INSTALL: YES
+
+  FormaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: Forma
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).forma.uitests
+        TEST_TARGET_NAME: Forma
+
+schemes:
+  Forma:
+    build:
+      targets:
+        Forma: all
+        FormaUITests: [test]
+    test:
+      config: Debug
+      targets:
+        - FormaUITests
+    run:
+      config: Debug
+    archive:
+      config: Release

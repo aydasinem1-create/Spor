@@ -1,0 +1,12 @@
+// Forma yapılandırması
+//
+// Kendi Apple hesabınla imzalamak istersen:
+//  - DEVELOPMENT_TEAM: Apple Developer hesabındaki 10 karakterlik Takım Kimliği (Team ID)
+//  - BUNDLE_ID_PREFIX: dünyada benzersiz olması gereken önek (örn. com.adın)
+// Ücretsiz Sideloadly kurulumunda bu değerlere dokunmana gerek yok.
+
+DEVELOPMENT_TEAM =
+BUNDLE_ID_PREFIX = io.github.aydasinem1create
+APP_GROUP_ID = group.$(BUNDLE_ID_PREFIX).forma
+MARKETING_VERSION = 1.0
+CURRENT_PROJECT_VERSION = 1

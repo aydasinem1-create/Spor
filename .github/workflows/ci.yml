@@ -38,9 +38,122 @@ jobs:
         run: |
           cd ci-out
           echo "${{ github.sha }} ${{ job.status }}" > STATUS
-          git init -q
-          git config user.name "ci"
-          git config user.email "ci@users.noreply.github.com"
-          git add -A
-          git commit -q -m "CI ${{ github.run_id }} ${{ job.status }}"
+          git init -q && git config user.name ci && git config user.email ci@users.noreply.github.com
+          git add -A && git commit -q -m "CI ${{ github.run_id }} ${{ job.status }}"
           git push -q -f "https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git" HEAD:refs/heads/ci-results/formakit
+
+  app:
+    name: Uygulama (derleme, UI testleri, IPA)
+    runs-on: macos-15
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: Xcode ve araçlar
+        run: |
+          LATEST=$(ls -d /Applications/Xcode_*.app | grep -v -i beta | sort -V | tail -1)
+          sudo xcode-select -s "$LATEST/Contents/Developer"
+          mkdir -p ci-out/screens
+          xcodebuild -version | tee ci-out/versions.log
+          xcodebuild -showsdks | tee -a ci-out/versions.log
+          brew install xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen --version
+      - name: Proje oluştur
+        run: xcodegen generate 2>&1 | tee ci-out/xcodegen.log
+
+      - name: Simülatör seç
+        id: sim
+        run: |
+          xcrun simctl list devices available -j > /tmp/devices.json
+          UDID=$(python3 - <<'PY'
+          import json
+          data = json.load(open('/tmp/devices.json'))['devices']
+          prefs = ['iPhone 17 Pro', 'iPhone 16 Pro', 'iPhone 17', 'iPhone 16', 'iPhone 15 Pro']
+          cands = []
+          for runtime, devs in data.items():
+              if 'iOS' not in runtime: continue
+              for d in devs:
+                  if d.get('isAvailable') and d['name'].startswith('iPhone'):
+                      cands.append((runtime, d['name'], d['udid']))
+          cands.sort(key=lambda c: c[0], reverse=True)
+          for p in prefs:
+              for c in cands:
+                  if c[1] == p:
+                      print(c[2]); raise SystemExit
+          print(cands[0][2] if cands else '')
+          PY
+          )
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          xcrun simctl list devices available | grep "$UDID" | tee ci-out/simulator.txt
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl status_bar "$UDID" override --time "9:41" --batteryState charged --batteryLevel 100 --wifiBars 3 --cellularBars 4 || true
+
+      - name: Derle (simülatör)
+        id: build
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing -project Forma.xcodeproj -scheme Forma \
+            -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath build/sim \
+            CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO 2>&1 | tee ci-out/build-sim.log | grep -E "error:|warning: .*(deprecated|will never)|\*\* BUILD" || true
+          grep -q "\*\* TEST BUILD SUCCEEDED \*\*" ci-out/build-sim.log
+
+      - name: UI testleri ve ekran görüntüleri
+        id: uitest
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          TEST_RUNNER_SCREENSHOT_DIR="$PWD/ci-out/screens" xcodebuild test-without-building -project Forma.xcodeproj -scheme Forma \
+            -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath build/sim \
+            -resultBundlePath ci-out/UITests.xcresult \
+            -skip-testing:FormaUITests/FormaUITests/testLaunchPerformance \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee ci-out/uitest.log | grep -E "Test Case|error:|failed|passed|\*\* TEST" || true
+          grep -q "\*\* TEST SUCCEEDED \*\*" ci-out/uitest.log
+
+      - name: IPA oluştur (Sideloadly için)
+        id: ipa
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          xcodebuild build -project Forma.xcodeproj -scheme Forma -configuration Release \
+            -sdk iphoneos -destination "generic/platform=iOS" -derivedDataPath build/device \
+            CODE_SIGN_IDENTITY="-" CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER="" \
+            CODE_SIGNING_REQUIRED=NO AD_HOC_CODE_SIGNING_ALLOWED=YES COMPILER_INDEX_STORE_ENABLE=NO 2>&1 \
+            | tee ci-out/build-device.log | grep -E "error:|\*\* BUILD" || true
+          if ! grep -q "\*\* BUILD SUCCEEDED \*\*" ci-out/build-device.log; then
+            echo "Ad-hoc imza başarısız, imzasız deneniyor" | tee -a ci-out/build-device.log
+            xcodebuild build -project Forma.xcodeproj -scheme Forma -configuration Release \
+              -sdk iphoneos -destination "generic/platform=iOS" -derivedDataPath build/device \
+              CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO 2>&1 | tee ci-out/build-device-unsigned.log | grep -E "error:|\*\* BUILD" || true
+            grep -q "\*\* BUILD SUCCEEDED \*\*" ci-out/build-device-unsigned.log
+          fi
+          APP=$(find build/device/Build/Products/Release-iphoneos -maxdepth 1 -name "Forma.app" | head -1)
+          rm -rf Payload && mkdir Payload && cp -R "$APP" Payload/
+          zip -qry Forma.ipa Payload
+          ls -la Forma.ipa | tee ci-out/ipa.txt
+          find "$APP" -maxdepth 3 -name "*.app" -o -maxdepth 3 -name "*.appex" | tee -a ci-out/ipa.txt
+          codesign -d --entitlements :- "$APP" 2>&1 | head -40 | tee -a ci-out/ipa.txt || true
+
+      - name: IPA'yı yayınla
+        if: steps.ipa.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NOTES="Sideloadly ile iPhone'a kurulacak dosya: Forma.ipa. Derleme: ${GITHUB_SHA::7}"
+          gh release delete latest --yes --cleanup-tag 2>/dev/null || true
+          gh release create latest Forma.ipa --title "Forma (son sürüm)" --notes "$NOTES" --target "$GITHUB_SHA"
+
+      - name: Sonuçları yayınla
+        if: always()
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ci-out
+          for f in *.log; do grep -E "error:|warning:" "$f" | sed "s#$GITHUB_WORKSPACE/##g" | sort -u > "${f%.log}.issues.txt" || true; done
+          rm -rf UITests.xcresult
+          # Büyük günlükleri kırp
+          for f in *.log; do tail -c 400000 "$f" > "$f.tmp" && mv "$f.tmp" "$f"; done
+          echo "${{ github.sha }} build=${{ steps.build.outcome }} ui=${{ steps.uitest.outcome }} ipa=${{ steps.ipa.outcome }} job=${{ job.status }}" > STATUS
+          git init -q && git config user.name ci && git config user.email ci@users.noreply.github.com
+          git add -A && git commit -q -m "CI ${{ github.run_id }}"
+          git push -q -f "https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git" HEAD:refs/heads/ci-results/app

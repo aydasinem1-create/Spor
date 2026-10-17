@@ -34,6 +34,11 @@ final class WatchSync: NSObject {
         }
     }
 
+    func startWatchWorkout() {
+        guard let session, session.activationState == .activated, session.isPaired, session.isWatchAppInstalled else { return }
+        HealthService.shared.startWatchApp()
+    }
+
     static func payload(for model: AppModel) -> WatchPayload {
         let t = model.targets
         let supps = model.todaysSupplements.map {
