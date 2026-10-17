@@ -125,6 +125,12 @@ enum Fmt {
 
     static func kg(_ v: Double) -> String { v.formattedKg }
 
+    /// Kesirli set sayısı: 7 → "7", 7.5 → "7,5"
+    static func sets(_ v: Double) -> String {
+        let r = (v * 2).rounded() / 2
+        return r == r.rounded() ? "\(Int(r))" : oneDecimal(r)
+    }
+
     static func oneDecimal(_ v: Double) -> String {
         String(format: "%.1f", v).replacingOccurrences(of: ".", with: ",")
     }
@@ -139,7 +145,15 @@ enum Fmt {
     static func minutes(_ t: TimeInterval) -> String {
         let m = Int(t / 60)
         if m >= 60 { return "\(m / 60) sa \(m % 60) dk" }
+        if m == 0 { return "\(max(0, Int(t))) sn" }
         return "\(m) dk"
+    }
+
+    /// Türkçe yüzde değişim: "%9 arttı" / "%9 azaldı"
+    static func change(_ pct: Double) -> String {
+        let v = Int(abs(pct).rounded())
+        if v == 0 { return "aynı" }
+        return "%\(v) \(pct > 0 ? "arttı" : "azaldı")"
     }
 
     static let dayMonth: DateFormatter = {

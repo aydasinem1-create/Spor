@@ -221,19 +221,37 @@ struct ProgressHubView: View {
         let vol = model.weeklyVolume.filter { $0.target.lowerBound >= 6 }
         return VStack(alignment: .leading, spacing: 12) {
             Text("Bu haftaki set sayısı").formaFont(.headline)
-            Chart {
+            let scale = max(vol.map(\.target.upperBound).max() ?? 10, vol.map(\.sets).max() ?? 0, 1)
+            VStack(spacing: 9) {
                 ForEach(vol) { v in
-                    BarMark(x: .value("Set", v.sets), y: .value("Kas", v.muscle.displayName))
-                        .foregroundStyle(v.status == .below ? Theme.amber : Theme.lime)
-                        .cornerRadius(4)
-                    RuleMark(xStart: .value("Hedef", v.target.lowerBound), xEnd: .value("Hedef", v.target.lowerBound + 0.15),
-                             y: .value("Kas", v.muscle.displayName))
-                        .foregroundStyle(Theme.textPrimary)
+                    HStack(spacing: 10) {
+                        Text(v.muscle.displayName).formaFont(.caption, Theme.textSecondary)
+                            .frame(width: 76, alignment: .leading)
+                            .lineLimit(1).minimumScaleFactor(0.8)
+                        GeometryReader { g in
+                            let w = g.size.width
+                            ZStack(alignment: .leading) {
+                                Capsule().fill(Theme.surfaceRaised)
+                                Capsule().fill(v.status == .below ? Theme.amber : Theme.lime)
+                                    .frame(width: max(6, w * min(1, v.sets / scale)))
+                                Rectangle().fill(Theme.textPrimary.opacity(0.85))
+                                    .frame(width: 2, height: 14)
+                                    .offset(x: w * min(1, v.target.lowerBound / scale) - 1)
+                            }
+                            .frame(height: 8)
+                            .frame(maxHeight: .infinity)
+                        }
+                        .frame(height: 14)
+                        Text("\(Fmt.sets(v.sets))/\(Int(v.target.lowerBound))")
+                            .formaFont(.caption, v.status == .below ? Theme.textTertiary : Theme.lime)
+                            .monospacedDigit()
+                            .frame(width: 44, alignment: .trailing)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("\(v.muscle.displayName): \(Fmt.sets(v.sets)) set, hedef en az \(Int(v.target.lowerBound))")
                 }
             }
-            .chartXAxis { AxisMarks(position: .bottom) }
-            .frame(height: CGFloat(max(1, vol.count)) * 26 + 20)
-            Text("Beyaz çizgi haftalık minimum hedef. Haftada kas başına ~10+ set kas gelişimi için etkili bulunmuştur; getiri giderek azalır.")
+            Text("Beyaz çizgi haftalık en az hedef. İkincil kaslar yarım set sayılır. Haftada kas başına ~10+ set kas gelişimi için etkili bulunmuştur; getiri giderek azalır.")
                 .formaFont(.caption, Theme.textTertiary)
         }
         .cardStyle()

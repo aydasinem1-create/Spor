@@ -266,8 +266,25 @@ final class ExerciseImageCache {
         let url = Bundle.main.url(forResource: name, withExtension: "jpg", subdirectory: "ExerciseImages")
             ?? Bundle.main.url(forResource: name, withExtension: "jpg")
         guard let url, let img = UIImage(contentsOfFile: url.path) else { return nil }
-        cache.setObject(img, forKey: name as NSString)
-        return img
+        // Kod çözmeyi ana iş parçacığında çizim sırasında değil şimdi yap
+        let decoded = img.preparingForDisplay() ?? img
+        cache.setObject(decoded, forKey: name as NSString)
+        return decoded
+    }
+
+    /// Listeler için küçük (yaklaşık 200 px) ve önceden çözülmüş kopya.
+    func thumbnail(datasetID: String) -> UIImage? {
+        let key = "\(datasetID)_thumb" as NSString
+        if let img = cache.object(forKey: key) { return img }
+        let name = "\(datasetID)_0"
+        let url = Bundle.main.url(forResource: name, withExtension: "jpg", subdirectory: "ExerciseImages")
+            ?? Bundle.main.url(forResource: name, withExtension: "jpg")
+        guard let url, let img = UIImage(contentsOfFile: url.path) else { return nil }
+        let scale = 200 / max(img.size.width, 1)
+        let size = CGSize(width: img.size.width * scale, height: img.size.height * scale)
+        let thumb = img.preparingThumbnail(of: size) ?? img
+        cache.setObject(thumb, forKey: key)
+        return thumb
     }
 }
 
@@ -275,6 +292,7 @@ final class ExerciseImageCache {
 struct ExerciseAnimationView: View {
     var exercise: Exercise
     var cornerRadius: CGFloat = 18
+    /// false: liste küçük resmi (yalnızca ilk kare, etiket ve dokunma yok)
     var animated = true
     @State private var frame = 0
     @State private var isPaused = false
@@ -282,50 +300,65 @@ struct ExerciseAnimationView: View {
     private var datasetID: String? { exercise.datasetIDs.first }
 
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            Theme.surfaceRaised
-            if let id = datasetID, let first = ExerciseImageCache.shared.image(datasetID: id, frame: 0) {
-                let second = ExerciseImageCache.shared.image(datasetID: id, frame: 1) ?? first
-                ZStack {
-                    Image(uiImage: first).resizable().scaledToFill().opacity(frame == 0 ? 1 : 0)
-                    Image(uiImage: second).resizable().scaledToFill().opacity(frame == 1 ? 1 : 0)
-                }
-                .animation(.easeInOut(duration: 0.45), value: frame)
-                .clipped()
-                LinearGradient(colors: [.clear, .black.opacity(0.55)], startPoint: .center, endPoint: .bottom)
-                HStack(spacing: 6) {
-                    Circle().fill(frame == 0 ? Theme.lime : Color.white.opacity(0.4)).frame(width: 6, height: 6)
-                    Circle().fill(frame == 1 ? Theme.lime : Color.white.opacity(0.4)).frame(width: 6, height: 6)
-                    Text(frame == 0 ? "Başlangıç" : "Bitiş").font(.forma(.micro)).foregroundStyle(.white)
-                    Spacer()
-                    if animated {
-                        Image(systemName: isPaused ? "play.fill" : "pause.fill")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundStyle(.white.opacity(0.85))
+        if animated {
+            player
+                .contentShape(Rectangle())
+                .onTapGesture { isPaused.toggle() }
+                .task(id: "\(exercise.id)-\(isPaused)") {
+                    guard !isPaused else { return }
+                    while !Task.isCancelled {
+                        try? await Task.sleep(nanoseconds: 1_200_000_000)
+                        if Task.isCancelled { break }
+                        frame = 1 - frame
                     }
                 }
-                .padding(10)
-            } else {
-                Image(systemName: "figure.strengthtraining.traditional")
-                    .font(.system(size: 40))
-                    .foregroundStyle(Theme.textTertiary)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(exercise.name) hareket görseli")
+                .accessibilityHint(isPaused ? "Oynatmak için dokun" : "Durdurmak için dokun")
+                .accessibilityAddTraits(.isImage)
+        } else {
+            player.accessibilityHidden(true)
+        }
+    }
+
+    private var player: some View {
+        Theme.surfaceRaised
+            .overlay {
+                if let id = datasetID,
+                   let first = animated ? ExerciseImageCache.shared.image(datasetID: id, frame: 0) : ExerciseImageCache.shared.thumbnail(datasetID: id) {
+                    let second = animated ? (ExerciseImageCache.shared.image(datasetID: id, frame: 1) ?? first) : first
+                    ZStack {
+                        Image(uiImage: first).resizable().scaledToFill().opacity(frame == 0 ? 1 : 0)
+                        if animated {
+                            Image(uiImage: second).resizable().scaledToFill().opacity(frame == 1 ? 1 : 0)
+                        }
+                    }
+                    .animation(.easeInOut(duration: 0.45), value: frame)
+                } else {
+                    Image(systemName: "figure.strengthtraining.traditional")
+                        .font(.system(size: animated ? 40 : 18))
+                        .foregroundStyle(Theme.textTertiary)
+                }
             }
-        }
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-        .contentShape(Rectangle())
-        .onTapGesture {
-            if animated { isPaused.toggle() } else { frame = 1 - frame }
-        }
-        .task(id: "\(exercise.id)-\(isPaused)") {
-            guard animated, !isPaused else { return }
-            while !Task.isCancelled {
-                try? await Task.sleep(nanoseconds: 1_200_000_000)
-                if Task.isCancelled { break }
-                frame = 1 - frame
+            .overlay(alignment: .bottom) {
+                if animated, datasetID != nil {
+                    ZStack(alignment: .bottomLeading) {
+                        LinearGradient(colors: [.clear, .black.opacity(0.55)], startPoint: .top, endPoint: .bottom)
+                            .frame(height: 56)
+                        HStack(spacing: 6) {
+                            Circle().fill(frame == 0 ? Theme.lime : Color.white.opacity(0.4)).frame(width: 6, height: 6)
+                            Circle().fill(frame == 1 ? Theme.lime : Color.white.opacity(0.4)).frame(width: 6, height: 6)
+                            Text(frame == 0 ? "Başlangıç" : "Bitiş").font(.forma(.micro)).foregroundStyle(.white)
+                            Spacer()
+                            Image(systemName: isPaused ? "play.fill" : "pause.fill")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundStyle(.white.opacity(0.85))
+                        }
+                        .padding(10)
+                    }
+                }
             }
-        }
-        .accessibilityLabel("\(exercise.name) hareket görseli")
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
     }
 }
 

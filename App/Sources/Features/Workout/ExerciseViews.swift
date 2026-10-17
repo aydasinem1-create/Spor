@@ -181,9 +181,11 @@ struct ExerciseLibraryView: View {
                         if let onPick {
                             Button { onPick(ex) } label: { ExerciseListRow(exercise: ex, showAdd: true) }
                                 .buttonStyle(PressableStyle())
+                                .accessibilityIdentifier("exercise.row.\(ex.id)")
                         } else {
                             NavigationLink { ExerciseDetailView(exercise: ex) } label: { ExerciseListRow(exercise: ex, showAdd: false) }
                                 .buttonStyle(PressableStyle())
+                                .accessibilityIdentifier("exercise.row.\(ex.id)")
                         }
                     }
                     if results.isEmpty {

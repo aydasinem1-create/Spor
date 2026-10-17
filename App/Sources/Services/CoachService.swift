@@ -44,7 +44,7 @@ enum CoachService {
         if vPrev > 0 && vNow > 0 {
             let change = (vNow - vPrev) / vPrev * 100
             out.append(Insight(symbol: change >= 0 ? "arrow.up.right" : "arrow.down.right",
-                               title: "Toplam hacim \(change >= 0 ? "+" : "")\(Int(change.rounded()))%",
+                               title: "Toplam hacim \(Fmt.change(change))",
                                detail: "Bu hafta \(Fmt.int(vNow)) kg kaldırdın.", tone: change >= -10 ? .good : .neutral))
         }
 

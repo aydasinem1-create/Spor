@@ -116,14 +116,14 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild build -project Forma.xcodeproj -scheme Forma -configuration Release \
-            -sdk iphoneos -destination "generic/platform=iOS" -derivedDataPath build/device \
+            -destination "generic/platform=iOS" -derivedDataPath build/device \
             CODE_SIGN_IDENTITY="-" CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER="" \
             CODE_SIGNING_REQUIRED=NO AD_HOC_CODE_SIGNING_ALLOWED=YES COMPILER_INDEX_STORE_ENABLE=NO 2>&1 \
             | tee ci-out/build-device.log | grep -E "error:|\*\* BUILD" || true
           if ! grep -q "\*\* BUILD SUCCEEDED \*\*" ci-out/build-device.log; then
             echo "Ad-hoc imza başarısız, imzasız deneniyor" | tee -a ci-out/build-device.log
             xcodebuild build -project Forma.xcodeproj -scheme Forma -configuration Release \
-              -sdk iphoneos -destination "generic/platform=iOS" -derivedDataPath build/device \
+              -destination "generic/platform=iOS" -derivedDataPath build/device \
               CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO 2>&1 | tee ci-out/build-device-unsigned.log | grep -E "error:|\*\* BUILD" || true
             grep -q "\*\* BUILD SUCCEEDED \*\*" ci-out/build-device-unsigned.log
           fi

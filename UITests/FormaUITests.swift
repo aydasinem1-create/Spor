@@ -141,14 +141,16 @@ final class FormaUITests: XCTestCase {
         tap(lib)
         sleep(1)
         shot(app, "62-hareketler")
-        let first = app.buttons.containing(NSPredicate(format: "label CONTAINS 'Leg Press'")).firstMatch
-        if first.waitForExistence(timeout: 4) {
-            first.tap()
-            sleep(2)
-            shot(app, "63-hareket-detay")
-            app.swipeUp()
-            shot(app, "64-hareket-form")
-        }
+        let search = app.searchFields.firstMatch
+        tap(search)
+        search.typeText("leg press")
+        sleep(1)
+        shot(app, "63-hareket-ara")
+        tap(app.buttons["exercise.row.leg-press"])
+        sleep(2)
+        shot(app, "64-hareket-detay")
+        app.swipeUp()
+        shot(app, "65-hareket-form")
     }
 
     func testLaunchPerformance() throws {

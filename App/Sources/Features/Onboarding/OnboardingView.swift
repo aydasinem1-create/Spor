@@ -95,11 +95,7 @@ struct OnboardingView: View {
     private var welcome: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
-            ZStack {
-                Circle().fill(RadialGradient(colors: [Theme.lime.opacity(0.35), .clear], center: .center, startRadius: 10, endRadius: 220))
-                    .frame(width: 440, height: 440)
-                    .offset(x: 120, y: -40)
-                VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: 14) {
                     HStack(spacing: 10) {
                         RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Theme.lime)
                             .frame(width: 44, height: 44)
@@ -112,8 +108,15 @@ struct OnboardingView: View {
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Birkaç soruyla hedeflerini, programını ve günlük planını senin için hazırlayalım.")
                         .formaFont(.body, Theme.textSecondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(alignment: .topTrailing) {
+                // Düzeni etkilemeyen dekoratif parıltı
+                Circle().fill(RadialGradient(colors: [Theme.lime.opacity(0.32), .clear], center: .center, startRadius: 10, endRadius: 220))
+                    .frame(width: 440, height: 440)
+                    .offset(x: 170, y: -170)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
             }
             VStack(alignment: .leading, spacing: 14) {
                 featureRow("figure.strengthtraining.traditional", "Hangi hareket, kaç set, kaç kilo", Theme.lime)

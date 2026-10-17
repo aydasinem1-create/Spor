@@ -64,6 +64,7 @@ struct MainTabView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .safeAreaInset(edge: .bottom) { Color.clear.frame(height: model.activeWorkout == nil ? 76 : 136) }
+            .overlay { StatusBarScrim() }
 
             VStack(spacing: 8) {
                 if model.activeWorkout != nil {
@@ -216,5 +217,22 @@ struct ActiveWorkoutBar: View {
             .buttonStyle(PressableStyle())
             .accessibilityIdentifier("activeWorkoutBar")
         }
+    }
+}
+
+/// Kaydırılan içeriğin saat ve pil göstergesinin altına karışmasını önleyen yumuşak üst geçiş.
+struct StatusBarScrim: View {
+    var body: some View {
+        GeometryReader { g in
+            LinearGradient(stops: [.init(color: Theme.background, location: 0),
+                                   .init(color: Theme.background.opacity(0.88), location: 0.55),
+                                   .init(color: Theme.background.opacity(0), location: 1)],
+                           startPoint: .top, endPoint: .bottom)
+                .frame(height: g.safeAreaInsets.top + 18)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+        .ignoresSafeArea()
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }

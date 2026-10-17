@@ -240,14 +240,19 @@ struct ExerciseCard: View {
         HStack(alignment: .top, spacing: 10) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(ex.name).formaFont(.headline).fixedSize(horizontal: false, vertical: true)
-                HStack(spacing: 6) {
+                let chips = HStack(spacing: 6) {
                     ForEach(ex.primary.prefix(2), id: \.self) { m in
                         Text(m.displayName).font(.forma(.label)).foregroundStyle(Theme.lime)
                             .padding(.horizontal, 8).padding(.vertical, 3)
                             .background(Theme.lime.opacity(0.12), in: Capsule())
                     }
-                    Text("\(sessionExercise.targetRepLow)–\(sessionExercise.targetRepHigh)\(ex.tracking == .duration ? " sn" : " tekrar") · \(sessionExercise.restSeconds) sn dinlenme")
-                        .formaFont(.caption, Theme.textTertiary)
+                }
+                let target = Text("\(sessionExercise.targetRepLow)–\(sessionExercise.targetRepHigh)\(ex.tracking == .duration ? " sn" : " tekrar") · \(sessionExercise.restSeconds) sn dinlenme")
+                    .formaFont(.caption, Theme.textTertiary)
+                    .lineLimit(1)
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 6) { chips; target }
+                    VStack(alignment: .leading, spacing: 6) { chips; target }
                 }
             }
             Spacer()
@@ -526,7 +531,10 @@ struct RestTimerPanel: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Dinlenme").eyebrow(Theme.water)
                         Text(Fmt.duration(remaining.rounded(.up))).formaFont(.numberL).monospacedDigit()
+                            .lineLimit(1).fixedSize()
+                            .contentTransition(.numericText(countsDown: true))
                     }
+                    .layoutPriority(1)
                     Spacer()
                     Button("−15") { model.adjustRest(by: -15) }.buttonStyle(SecondaryButtonStyle(compact: true))
                     Button("+15") { model.adjustRest(by: 15) }.buttonStyle(SecondaryButtonStyle(compact: true))
@@ -614,9 +622,9 @@ struct WorkoutSummaryView: View {
                     StatTile(label: "Set", value: "\(result.session.completedSetCount)", symbol: "square.stack.3d.up")
                     StatTile(label: "XP", value: "+\(result.xpGained)", color: Theme.gold, symbol: "star.fill")
                 }
-                if let prev = result.previousVolume, prev > 0 {
+                if let prev = result.previousVolume, prev > 0, result.session.totalVolume > 0 {
                     let change = (result.session.totalVolume - prev) / prev * 100
-                    Label("Geçen seferki aynı güne göre hacim \(change >= 0 ? "+" : "")\(Int(change.rounded()))%",
+                    Label("Geçen seferki aynı antrenmana göre hacim \(Fmt.change(change))",
                           systemImage: change >= 0 ? "arrow.up.right" : "arrow.down.right")
                         .formaFont(.callout, change >= 0 ? Theme.lime : Theme.textSecondary)
                 }
