@@ -52,7 +52,7 @@ public struct UserProfile: Codable, Equatable, Sendable {
 }
 
 /// Günlük hedefler. `isManual` false ise profil ve verilere göre otomatik hesaplanır.
-public struct DailyTargets: Codable, Equatable, Sendable {
+public struct DailyTargets: Codable, Hashable, Sendable {
     public var kcal: Double
     public var proteinG: Double
     public var carbsG: Double
