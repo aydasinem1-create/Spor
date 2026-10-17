@@ -126,8 +126,11 @@ final class FormaUITests: XCTestCase {
         tap(firstSet)
         sleep(1)
         shot(app, "52-dinlenme")
-        let next = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'set.complete.0.' AND label == 'Seti tamamla'")).firstMatch
-        if next.waitForExistence(timeout: 3) { next.tap() }
+        // Isınma setlerinden sonra en az bir çalışma seti tamamlansın (yalnız ısınma kaydedilmez)
+        for _ in 0..<2 {
+            let next = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'set.complete.0.' AND label == 'Seti tamamla'")).firstMatch
+            if next.waitForExistence(timeout: 3) { next.tap() }
+        }
         app.swipeUp()
         shot(app, "53-aktif-asagi")
         tap(app.buttons["workout.finish"])

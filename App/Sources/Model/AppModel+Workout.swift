@@ -208,8 +208,11 @@ extension AppModel {
         w.sessionRPE = rpe
         w.note = note
 
-        guard !w.exercises.isEmpty else {
+        // Sadece ısınma setleri yapıldıysa antrenman sayılmaz (hacim, XP ve seri şişmesin)
+        guard w.completedSetCount > 0 else {
             discardWorkout()
+            show(Toast(symbol: "xmark.circle.fill", title: "Antrenman kaydedilmedi",
+                       subtitle: "Hiç çalışma seti tamamlanmadı.", tint: Theme.energy))
             return nil
         }
 

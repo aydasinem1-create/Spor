@@ -107,7 +107,7 @@ jobs:
             -resultBundlePath ci-out/UITests.xcresult \
             -skip-testing:FormaUITests/FormaUITests/testLaunchPerformance \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee ci-out/uitest.log | grep -E "Test Case|error:|failed|passed|\*\* TEST" || true
-          grep -q "\*\* TEST SUCCEEDED \*\*" ci-out/uitest.log
+          grep -qE "\*\* TEST (EXECUTE )?SUCCEEDED \*\*" ci-out/uitest.log
 
       - name: IPA oluştur (Sideloadly için)
         id: ipa
