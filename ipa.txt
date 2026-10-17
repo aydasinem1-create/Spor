@@ -1,0 +1,7 @@
+-rw-r--r--  1 runner  staff  12514761 Oct 17 12:03 Forma.ipa
+build/device/Build/Products/Release-iphoneos/Forma.app
+build/device/Build/Products/Release-iphoneos/Forma.app/PlugIns/FormaWidgets.appex
+build/device/Build/Products/Release-iphoneos/Forma.app/Watch/FormaWatch.app
+Executable=/Users/runner/work/Spor/Spor/build/device/Build/Products/Release-iphoneos/Forma.app/Forma
+warning: Specifying ':' in the path is deprecated and will not work in a future release
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>com.apple.developer.healthkit</key><true/><key>com.apple.developer.healthkit.access</key><array></array><key>com.apple.security.application-groups</key><array><string>group.io.github.aydasinem1create.forma</string></array></dict></plist>

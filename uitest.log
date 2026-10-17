@@ -1,0 +1,598 @@
+Command line invocation:
+    /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project Forma.xcodeproj -scheme Forma -destination id=E952A9B0-CC78-435C-BF08-06AD47FE1076 -derivedDataPath build/sim -resultBundlePath ci-out/UITests.xcresult "-skip-testing:FormaUITests/FormaUITests/testLaunchPerformance" CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  FormaKit: /Users/runner/work/Spor/Spor/Packages/FormaKit
+
+Writing result bundle at path:
+	/Users/runner/work/Spor/Spor/ci-out/UITests.xcresult
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:E952A9B0-CC78-435C-BF08-06AD47FE1076, OS:26.2, name:iPhone 17 Pro }
+{ platform:iOS Simulator, arch:x86_64, id:E952A9B0-CC78-435C-BF08-06AD47FE1076, OS:26.2, name:iPhone 17 Pro }
+2026-10-17 11:56:00.266599+0000 FormaUITests-Runner[22319:68923] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-17 11:56:08.467.
+Test Suite 'FormaUITests.xctest' started at 2026-10-17 11:56:08.468.
+Test Suite 'FormaUITests' started at 2026-10-17 11:56:08.468.
+Test Case '-[FormaUITests.FormaUITests testDemoTour]' started.
+    t =     0.00s Start Test at 2026-10-17 11:56:08.469
+    t =     1.07s Set Up
+    t =     1.08s Open io.github.aydasinem1create.forma
+    t =     1.08s     Launch io.github.aydasinem1create.forma
+    t =    14.02s         Setting up automation session
+    t =    16.84s         Wait for io.github.aydasinem1create.forma to idle
+    t =    23.51s Waiting 10.0s for "tab.today" Button to exist
+    t =    24.53s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.today" Button`
+    t =    24.53s         Checking existence of `"tab.today" Button`
+    t =    25.69s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    25.96s Added attachment named '10-bugun'
+    t =    25.97s Waiting 8.0s for "water.add330" Button to exist
+    t =    26.98s     Checking `Expect predicate `existsNoRetry == 1` for object "water.add330" Button`
+    t =    26.98s         Checking existence of `"water.add330" Button`
+    t =    27.03s Tap "water.add330" Button
+    t =    27.03s     Wait for io.github.aydasinem1create.forma to idle
+    t =    27.04s     Find the "water.add330" Button
+    t =    27.08s     Check for interrupting elements affecting "water.add330" Button
+    t =    27.17s     Synthesize event
+    t =    27.63s     Wait for io.github.aydasinem1create.forma to idle
+    t =    27.64s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    27.64s     Wait for io.github.aydasinem1create.forma to idle
+    t =    27.66s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    27.72s     Check for interrupting elements affecting "Forma" Application
+    t =    27.77s     Synthesize event
+    t =    28.20s     Wait for io.github.aydasinem1create.forma to idle
+    t =    30.32s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    30.53s Added attachment named '11-bugun-asagi'
+    t =    30.53s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    30.53s     Wait for io.github.aydasinem1create.forma to idle
+    t =    30.54s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    30.59s     Check for interrupting elements affecting "Forma" Application
+    t =    30.64s     Synthesize event
+    t =    31.07s     Wait for io.github.aydasinem1create.forma to idle
+    t =    31.53s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    31.81s Added attachment named '12-bugun-alt'
+    t =    31.81s Waiting 8.0s for "tab.nutrition" Button to exist
+    t =    32.85s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.nutrition" Button`
+    t =    32.85s         Checking existence of `"tab.nutrition" Button`
+    t =    32.89s Tap "tab.nutrition" Button
+    t =    32.89s     Wait for io.github.aydasinem1create.forma to idle
+    t =    32.90s     Find the "tab.nutrition" Button
+    t =    32.97s     Check for interrupting elements affecting "tab.nutrition" Button
+    t =    33.05s     Synthesize event
+    t =    33.36s     Wait for io.github.aydasinem1create.forma to idle
+    t =    34.92s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    35.14s Added attachment named '20-beslenme'
+    t =    35.14s Waiting 8.0s for "meal.add.snack" Button to exist
+    t =    36.18s     Checking `Expect predicate `existsNoRetry == 1` for object "meal.add.snack" Button`
+    t =    36.18s         Checking existence of `"meal.add.snack" Button`
+    t =    36.25s Tap "meal.add.snack" Button
+    t =    36.25s     Wait for io.github.aydasinem1create.forma to idle
+    t =    36.26s     Find the "meal.add.snack" Button
+    t =    36.31s     Check for interrupting elements affecting "meal.add.snack" Button
+    t =    36.37s     Synthesize event
+    t =    36.38s         Scroll element to visible
+    t =    36.39s         Find the "meal.add.snack" Button
+    t =    36.49s         Computed hit point {355, 705} after scrolling to visible
+    t =    36.77s     Wait for io.github.aydasinem1create.forma to idle
+    t =    38.45s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    38.78s Added attachment named '21-yiyecek-ara'
+    t =    38.78s Waiting 5.0s for SearchField (First Match) to exist
+    t =    39.80s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =    39.80s         Checking existence of `SearchField (First Match)`
+    t =    39.88s Tap SearchField (First Match)
+    t =    39.88s     Wait for io.github.aydasinem1create.forma to idle
+    t =    39.88s     Find the SearchField (First Match)
+    t =    40.00s     Check for interrupting elements affecting "Yemek ara: menemen, tavuk, yoğurt…" SearchField
+    t =    40.11s     Synthesize event
+    t =    40.42s     Wait for io.github.aydasinem1create.forma to idle
+    t =    42.53s Type 'tavuk' into "Yemek ara: menemen, tavuk, yoğurt…" SearchField
+    t =    42.53s     Wait for io.github.aydasinem1create.forma to idle
+    t =    43.06s     Find the "Yemek ara: menemen, tavuk, yoğurt…" SearchField
+    t =    44.63s     Check for interrupting elements affecting "Yemek ara: menemen, tavuk, yoğurt…" SearchField
+    t =    44.73s     Synthesize event
+    t =    45.02s     Wait for io.github.aydasinem1create.forma to idle
+    t =    46.04s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    46.38s Added attachment named '22-arama-sonuc'
+    t =    46.39s Terminate io.github.aydasinem1create.forma:23030
+    t =    47.45s Open io.github.aydasinem1create.forma
+    t =    47.45s     Launch io.github.aydasinem1create.forma
+    t =    49.09s         Setting up automation session
+    t =    51.66s         Wait for io.github.aydasinem1create.forma to idle
+    t =    54.63s Waiting 8.0s for "tab.progress" Button to exist
+    t =    55.65s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.progress" Button`
+    t =    55.65s         Checking existence of `"tab.progress" Button`
+    t =    55.80s Tap "tab.progress" Button
+    t =    55.80s     Wait for io.github.aydasinem1create.forma to idle
+    t =    55.80s     Find the "tab.progress" Button
+    t =    55.90s     Check for interrupting elements affecting "tab.progress" Button
+    t =    55.96s     Synthesize event
+    t =    56.27s     Wait for io.github.aydasinem1create.forma to idle
+    t =    58.30s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    58.51s Added attachment named '30-ilerleme'
+    t =    58.51s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    58.51s     Wait for io.github.aydasinem1create.forma to idle
+    t =    58.52s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    58.62s     Check for interrupting elements affecting "Forma" Application
+    t =    58.68s     Synthesize event
+    t =    59.11s     Wait for io.github.aydasinem1create.forma to idle
+    t =    61.20s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    61.37s Added attachment named '31-ilerleme-alt'
+    t =    61.37s Waiting 8.0s for "tab.profile" Button to exist
+    t =    62.38s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.profile" Button`
+    t =    62.38s         Checking existence of `"tab.profile" Button`
+    t =    62.47s Tap "tab.profile" Button
+    t =    62.47s     Wait for io.github.aydasinem1create.forma to idle
+    t =    62.47s     Find the "tab.profile" Button
+    t =    62.56s     Check for interrupting elements affecting "tab.profile" Button
+    t =    62.61s     Synthesize event
+    t =    62.94s     Wait for io.github.aydasinem1create.forma to idle
+    t =    64.03s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    64.22s Added attachment named '40-profil'
+    t =    64.22s Tear Down
+Test Case '-[FormaUITests.FormaUITests testDemoTour]' passed (64.731 seconds).
+Test Case '-[FormaUITests.FormaUITests testMoreScreens]' started.
+    t =     0.00s Start Test at 2026-10-17 11:57:13.200
+    t =     0.09s Set Up
+    t =     0.09s Open io.github.aydasinem1create.forma
+    t =     0.09s     Launch io.github.aydasinem1create.forma
+    t =     0.09s         Terminate io.github.aydasinem1create.forma:24413
+    t =     1.65s         Setting up automation session
+    t =     3.36s         Wait for io.github.aydasinem1create.forma to idle
+    t =     5.39s Waiting 10.0s for "tab.today" Button to exist
+    t =     6.40s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.today" Button`
+    t =     6.40s         Checking existence of `"tab.today" Button`
+    t =     6.54s Waiting 4.0s for Button (First Match) to exist
+    t =     7.57s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.57s         Checking existence of `Button (First Match)`
+    t =     7.68s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =     7.68s     Wait for io.github.aydasinem1create.forma to idle
+    t =     7.69s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =     7.75s     Check for interrupting elements affecting "Forma" Application
+    t =     7.79s     Synthesize event
+    t =     8.22s     Wait for io.github.aydasinem1create.forma to idle
+    t =    10.33s Find the Button (First Match)
+    t =    10.48s Tap "Bugün nasıl hissediyorsun?" Button
+    t =    10.48s     Wait for io.github.aydasinem1create.forma to idle
+    t =    10.48s     Find the "Bugün nasıl hissediyorsun?" Button
+    t =    10.59s     Check for interrupting elements affecting "Bugün nasıl hissediyorsun?" Button
+    t =    10.68s     Synthesize event
+    t =    11.05s     Wait for io.github.aydasinem1create.forma to idle
+    t =    12.50s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    12.71s Added attachment named '13-hazir-olma'
+    t =    12.71s Swipe down Target Application 'io.github.aydasinem1create.forma'
+    t =    12.72s     Wait for io.github.aydasinem1create.forma to idle
+    t =    12.72s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    12.76s     Check for interrupting elements affecting "Forma" Application
+    t =    12.81s     Synthesize event
+    t =    13.21s     Wait for io.github.aydasinem1create.forma to idle
+    t =    14.55s Waiting 8.0s for "tab.profile" Button to exist
+    t =    15.60s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.profile" Button`
+    t =    15.60s         Checking existence of `"tab.profile" Button`
+    t =    15.66s Tap "tab.profile" Button
+    t =    15.66s     Wait for io.github.aydasinem1create.forma to idle
+    t =    15.66s     Find the "tab.profile" Button
+    t =    15.71s     Check for interrupting elements affecting "tab.profile" Button
+    t =    15.77s     Synthesize event
+    t =    16.07s     Wait for io.github.aydasinem1create.forma to idle
+    t =    16.13s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    16.13s     Wait for io.github.aydasinem1create.forma to idle
+    t =    16.13s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    16.18s     Check for interrupting elements affecting "Forma" Application
+    t =    16.25s     Synthesize event
+    t =    16.73s     Wait for io.github.aydasinem1create.forma to idle
+    t =    17.48s Waiting 4.0s for Button (First Match) to exist
+    t =    18.51s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.52s         Checking existence of `Button (First Match)`
+    t =    18.63s Tap Button (First Match)
+    t =    18.63s     Wait for io.github.aydasinem1create.forma to idle
+    t =    18.63s     Find the Button (First Match)
+    t =    18.77s     Check for interrupting elements affecting "Bilgi köşesi" Button
+    t =    18.81s     Synthesize event
+    t =    19.11s     Wait for io.github.aydasinem1create.forma to idle
+    t =    21.04s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    21.24s Added attachment named '42-bilgi-kosesi'
+    t =    21.24s Waiting 3.0s for Button (First Match) to exist
+    t =    22.27s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.27s         Checking existence of `Button (First Match)`
+    t =    22.39s Tap Button (First Match)
+    t =    22.39s     Wait for io.github.aydasinem1create.forma to idle
+    t =    22.39s     Find the Button (First Match)
+    t =    22.50s     Check for interrupting elements affecting "Protein, Ne kadar, ne zaman, nereden?, 3 dk" Button
+    t =    22.54s     Synthesize event
+    t =    22.84s     Wait for io.github.aydasinem1create.forma to idle
+    t =    24.26s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    24.42s Added attachment named '43-makale'
+    t =    24.42s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    24.42s     Wait for io.github.aydasinem1create.forma to idle
+    t =    24.43s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    24.46s     Check for interrupting elements affecting "Forma" Application
+    t =    24.49s     Synthesize event
+    t =    24.91s     Wait for io.github.aydasinem1create.forma to idle
+    t =    25.62s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    25.80s Added attachment named '44-makale-alt'
+    t =    25.80s Terminate io.github.aydasinem1create.forma:25424
+    t =    26.87s Open io.github.aydasinem1create.forma
+    t =    26.87s     Launch io.github.aydasinem1create.forma
+    t =    28.25s         Setting up automation session
+    t =    30.61s         Wait for io.github.aydasinem1create.forma to idle
+    t =    33.35s Waiting 8.0s for "tab.profile" Button to exist
+    t =    34.38s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.profile" Button`
+    t =    34.38s         Checking existence of `"tab.profile" Button`
+    t =    34.53s Tap "tab.profile" Button
+    t =    34.53s     Wait for io.github.aydasinem1create.forma to idle
+    t =    34.53s     Find the "tab.profile" Button
+    t =    34.58s     Check for interrupting elements affecting "tab.profile" Button
+    t =    34.63s     Synthesize event
+    t =    34.94s     Wait for io.github.aydasinem1create.forma to idle
+    t =    35.14s Waiting 4.0s for Button (First Match) to exist
+    t =    36.18s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.18s         Checking existence of `Button (First Match)`
+    t =    36.28s Tap Button (First Match)
+    t =    36.28s     Wait for io.github.aydasinem1create.forma to idle
+    t =    36.28s     Find the Button (First Match)
+    t =    36.33s     Check for interrupting elements affecting "Takviyeler" Button
+    t =    36.37s     Synthesize event
+    t =    36.68s     Wait for io.github.aydasinem1create.forma to idle
+    t =    37.85s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    38.12s Added attachment named '45-takviyeler'
+    t =    38.13s Tear Down
+Test Case '-[FormaUITests.FormaUITests testMoreScreens]' passed (38.575 seconds).
+Test Case '-[FormaUITests.FormaUITests testOnboardingFlow]' started.
+    t =     0.00s Start Test at 2026-10-17 11:57:51.776
+    t =     0.09s Set Up
+    t =     0.09s Open io.github.aydasinem1create.forma
+    t =     0.09s     Launch io.github.aydasinem1create.forma
+    t =     0.09s         Terminate io.github.aydasinem1create.forma:27037
+    t =     1.69s         Setting up automation session
+    t =     3.27s         Wait for io.github.aydasinem1create.forma to idle
+    t =     4.72s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =     4.89s Added attachment named '01-hosgeldin'
+    t =     4.89s Waiting 5.0s for "onboarding.next" Button to exist
+    t =     5.94s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =     5.94s         Checking existence of `"onboarding.next" Button`
+    t =     6.00s Tap "onboarding.next" Button
+    t =     6.00s     Wait for io.github.aydasinem1create.forma to idle
+    t =     6.00s     Find the "onboarding.next" Button
+    t =     6.04s     Check for interrupting elements affecting "onboarding.next" Button
+    t =     6.12s     Synthesize event
+    t =     6.45s     Wait for io.github.aydasinem1create.forma to idle
+    t =     7.24s Waiting 8.0s for "onboarding.name" TextField to exist
+    t =     8.27s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.name" TextField`
+    t =     8.28s         Checking existence of `"onboarding.name" TextField`
+    t =     8.66s Tap "onboarding.name" TextField
+    t =     8.66s     Wait for io.github.aydasinem1create.forma to idle
+    t =     8.66s     Find the "onboarding.name" TextField
+    t =     8.76s     Check for interrupting elements affecting "onboarding.name" TextField
+    t =     8.81s     Synthesize event
+    t =     9.11s     Wait for io.github.aydasinem1create.forma to idle
+    t =     9.84s Type 'Deniz' into "onboarding.name" TextField
+    t =     9.84s     Wait for io.github.aydasinem1create.forma to idle
+    t =    10.16s     Find the "onboarding.name" TextField
+    t =    10.31s     Check for interrupting elements affecting "onboarding.name" TextField
+    t =    10.39s     Synthesize event
+    t =    10.77s     Wait for io.github.aydasinem1create.forma to idle
+    t =    10.77s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    10.96s Added attachment named '02-tanisma'
+    t =    10.97s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    12.01s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    12.01s         Checking existence of `"onboarding.next" Button`
+    t =    12.11s Tap "onboarding.next" Button
+    t =    12.11s     Wait for io.github.aydasinem1create.forma to idle
+    t =    12.11s     Find the "onboarding.next" Button
+    t =    12.18s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    12.25s     Synthesize event
+    t =    12.54s     Wait for io.github.aydasinem1create.forma to idle
+    t =    13.27s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    13.56s Added attachment named '03-boy-kilo'
+    t =    13.56s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    14.59s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    14.60s         Checking existence of `"onboarding.next" Button`
+    t =    14.62s Tap "onboarding.next" Button
+    t =    14.62s     Wait for io.github.aydasinem1create.forma to idle
+    t =    14.62s     Find the "onboarding.next" Button
+    t =    14.64s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    14.68s     Synthesize event
+    t =    14.98s     Wait for io.github.aydasinem1create.forma to idle
+    t =    15.69s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    15.84s Added attachment named '04-hedef'
+    t =    15.84s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    16.84s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    16.84s         Checking existence of `"onboarding.next" Button`
+    t =    16.87s Tap "onboarding.next" Button
+    t =    16.87s     Wait for io.github.aydasinem1create.forma to idle
+    t =    16.87s     Find the "onboarding.next" Button
+    t =    16.89s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    16.91s     Synthesize event
+    t =    17.21s     Wait for io.github.aydasinem1create.forma to idle
+    t =    17.91s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    18.96s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    18.96s         Checking existence of `"onboarding.next" Button`
+    t =    19.00s Tap "onboarding.next" Button
+    t =    19.00s     Wait for io.github.aydasinem1create.forma to idle
+    t =    19.01s     Find the "onboarding.next" Button
+    t =    19.04s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    19.07s     Synthesize event
+    t =    19.36s     Wait for io.github.aydasinem1create.forma to idle
+    t =    20.07s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    21.09s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    21.09s         Checking existence of `"onboarding.next" Button`
+    t =    21.12s Tap "onboarding.next" Button
+    t =    21.12s     Wait for io.github.aydasinem1create.forma to idle
+    t =    21.12s     Find the "onboarding.next" Button
+    t =    21.18s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    21.22s     Synthesize event
+    t =    21.51s     Wait for io.github.aydasinem1create.forma to idle
+    t =    22.22s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    23.26s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    23.27s         Checking existence of `"onboarding.next" Button`
+    t =    23.30s Tap "onboarding.next" Button
+    t =    23.30s     Wait for io.github.aydasinem1create.forma to idle
+    t =    23.31s     Find the "onboarding.next" Button
+    t =    23.35s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    23.41s     Synthesize event
+    t =    23.72s     Wait for io.github.aydasinem1create.forma to idle
+    t =    24.43s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    25.48s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    25.48s         Checking existence of `"onboarding.next" Button`
+    t =    25.58s Tap "onboarding.next" Button
+    t =    25.58s     Wait for io.github.aydasinem1create.forma to idle
+    t =    25.59s     Find the "onboarding.next" Button
+    t =    25.63s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    25.69s     Synthesize event
+    t =    26.00s     Wait for io.github.aydasinem1create.forma to idle
+    t =    26.71s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    26.92s Added attachment named '05-plan'
+    t =    26.93s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    27.97s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    27.97s         Checking existence of `"onboarding.next" Button`
+    t =    27.99s Tap "onboarding.next" Button
+    t =    27.99s     Wait for io.github.aydasinem1create.forma to idle
+    t =    28.00s     Find the "onboarding.next" Button
+    t =    28.02s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    28.06s     Synthesize event
+    t =    28.37s     Wait for io.github.aydasinem1create.forma to idle
+    t =    29.16s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    29.87s Added attachment named '06-hedefler'
+    t =    29.87s Waiting 1.5s for "tab.today" Button to exist
+    t =    30.89s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.today" Button`
+    t =    30.89s         Checking existence of `"tab.today" Button`
+    t =    30.94s         Capturing element debug description
+    t =    31.38s     Checking existence of `"tab.today" Button`
+    t =    31.49s Collecting debug information to assist test failure triage
+    t =    31.50s     Requesting snapshot of accessibility hierarchy for app with pid 27317
+    t =    31.59s Waiting 5.0s for "onboarding.next" Button to exist
+    t =    32.62s     Checking `Expect predicate `existsNoRetry == 1` for object "onboarding.next" Button`
+    t =    32.63s         Checking existence of `"onboarding.next" Button`
+    t =    32.68s Tap "onboarding.next" Button
+    t =    32.68s     Wait for io.github.aydasinem1create.forma to idle
+    t =    32.68s     Find the "onboarding.next" Button
+    t =    32.73s     Check for interrupting elements affecting "onboarding.next" Button
+    t =    32.81s     Synthesize event
+    t =    33.14s     Wait for io.github.aydasinem1create.forma to idle
+    t =    34.46s Waiting 1.5s for "tab.today" Button to exist
+    t =    35.47s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.today" Button`
+    t =    35.47s         Checking existence of `"tab.today" Button`
+    t =    35.58s Waiting 8.0s for "tab.today" Button to exist
+    t =    36.61s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.today" Button`
+    t =    36.61s         Checking existence of `"tab.today" Button`
+    t =    37.67s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    37.97s Added attachment named '07-ilk-bugun'
+    t =    37.98s Tear Down
+Test Case '-[FormaUITests.FormaUITests testOnboardingFlow]' passed (38.449 seconds).
+Test Case '-[FormaUITests.FormaUITests testRecoveryMapAndExercise]' started.
+    t =     0.00s Start Test at 2026-10-17 11:58:30.236
+    t =     0.23s Set Up
+    t =     0.24s Open io.github.aydasinem1create.forma
+    t =     0.24s     Launch io.github.aydasinem1create.forma
+    t =     0.25s         Terminate io.github.aydasinem1create.forma:27317
+    t =     5.14s         Setting up automation session
+    t =     8.71s         Wait for io.github.aydasinem1create.forma to idle
+    t =    12.21s Waiting 8.0s for "tab.workout" Button to exist
+    t =    13.23s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.workout" Button`
+    t =    13.23s         Checking existence of `"tab.workout" Button`
+    t =    13.48s Tap "tab.workout" Button
+    t =    13.48s     Wait for io.github.aydasinem1create.forma to idle
+    t =    13.49s     Find the "tab.workout" Button
+    t =    13.94s     Check for interrupting elements affecting "tab.workout" Button
+    t =    14.26s     Synthesize event
+    t =    14.66s     Wait for io.github.aydasinem1create.forma to idle
+    t =    15.15s Waiting 8.0s for "Kas haritası" Button to exist
+    t =    16.15s     Checking `Expect predicate `existsNoRetry == 1` for object "Kas haritası" Button`
+    t =    16.15s         Checking existence of `"Kas haritası" Button`
+    t =    16.50s Tap "Kas haritası" Button
+    t =    16.50s     Wait for io.github.aydasinem1create.forma to idle
+    t =    16.52s     Find the "Kas haritası" Button
+    t =    16.89s     Check for interrupting elements affecting "Kas haritası" Button
+    t =    17.09s     Synthesize event
+    t =    17.46s     Wait for io.github.aydasinem1create.forma to idle
+    t =    18.77s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    19.35s Added attachment named '60-kas-haritasi'
+    t =    19.37s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    19.37s     Wait for io.github.aydasinem1create.forma to idle
+    t =    19.37s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    19.60s     Check for interrupting elements affecting "Forma" Application
+    t =    19.85s     Synthesize event
+    t =    20.47s     Wait for io.github.aydasinem1create.forma to idle
+    t =    21.55s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    22.09s Added attachment named '61-kas-listesi'
+    t =    22.10s Tap "Kapat" Button
+    t =    22.10s     Wait for io.github.aydasinem1create.forma to idle
+    t =    22.11s     Find the "Kapat" Button
+    t =    23.08s     Check for interrupting elements affecting "Kapat" Button
+    t =    23.36s     Synthesize event
+    t =    23.87s     Wait for io.github.aydasinem1create.forma to idle
+    t =    24.54s Waiting 8.0s for "Hareketler" Button to exist
+    t =    25.57s     Checking `Expect predicate `existsNoRetry == 1` for object "Hareketler" Button`
+    t =    25.57s         Checking existence of `"Hareketler" Button`
+    t =    25.65s Tap "Hareketler" Button
+    t =    25.65s     Wait for io.github.aydasinem1create.forma to idle
+    t =    25.65s     Find the "Hareketler" Button
+    t =    25.81s     Check for interrupting elements affecting "Hareketler" Button
+    t =    25.92s     Synthesize event
+    t =    26.24s     Wait for io.github.aydasinem1create.forma to idle
+    t =    27.93s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    28.56s Added attachment named '62-hareketler'
+    t =    28.56s Waiting 8.0s for SearchField (First Match) to exist
+    t =    29.58s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =    29.58s         Checking existence of `SearchField (First Match)`
+    t =    29.69s Tap SearchField (First Match)
+    t =    29.69s     Wait for io.github.aydasinem1create.forma to idle
+    t =    29.69s     Find the SearchField (First Match)
+    t =    29.95s     Check for interrupting elements affecting "Hareket ara" SearchField
+    t =    30.17s     Synthesize event
+    t =    30.52s     Wait for io.github.aydasinem1create.forma to idle
+    t =    32.16s Type 'leg press' into "Hareket ara" SearchField
+    t =    32.16s     Wait for io.github.aydasinem1create.forma to idle
+    t =    32.61s     Find the "Hareket ara" SearchField
+    t =    33.70s     Check for interrupting elements affecting "Hareket ara" SearchField
+    t =    34.30s     Synthesize event
+    t =    34.72s     Wait for io.github.aydasinem1create.forma to idle
+    t =    35.97s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    36.35s Added attachment named '63-hareket-ara'
+    t =    36.35s Waiting 8.0s for "exercise.row.leg-press" Button to exist
+    t =    37.38s     Checking `Expect predicate `existsNoRetry == 1` for object "exercise.row.leg-press" Button`
+    t =    37.38s         Checking existence of `"exercise.row.leg-press" Button`
+    t =    37.61s Tap "exercise.row.leg-press" Button
+    t =    37.61s     Wait for io.github.aydasinem1create.forma to idle
+    t =    37.61s     Find the "exercise.row.leg-press" Button
+    t =    37.78s     Check for interrupting elements affecting "exercise.row.leg-press" Button
+    t =    38.00s     Synthesize event
+    t =    38.33s     Wait for io.github.aydasinem1create.forma to idle
+    t =    43.84s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    44.32s Added attachment named '64-hareket-detay'
+    t =    44.33s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    44.33s     Wait for io.github.aydasinem1create.forma to idle
+    t =    44.34s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    44.57s     Check for interrupting elements affecting "Forma" Application
+    t =    44.77s     Synthesize event
+    t =    45.20s     Wait for io.github.aydasinem1create.forma to idle
+    t =    47.36s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    47.84s Added attachment named '65-hareket-form'
+    t =    47.84s Tear Down
+Test Case '-[FormaUITests.FormaUITests testRecoveryMapAndExercise]' passed (48.219 seconds).
+Test Case '-[FormaUITests.FormaUITests testWorkoutFlow]' started.
+    t =     0.00s Start Test at 2026-10-17 11:59:18.456
+    t =     0.05s Set Up
+    t =     0.05s Open io.github.aydasinem1create.forma
+    t =     0.06s     Launch io.github.aydasinem1create.forma
+    t =     0.06s         Terminate io.github.aydasinem1create.forma:29221
+    t =     3.07s         Setting up automation session
+    t =     5.13s         Wait for io.github.aydasinem1create.forma to idle
+    t =     7.55s Waiting 8.0s for "tab.workout" Button to exist
+    t =     8.56s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.workout" Button`
+    t =     8.56s         Checking existence of `"tab.workout" Button`
+    t =     8.79s Tap "tab.workout" Button
+    t =     8.79s     Wait for io.github.aydasinem1create.forma to idle
+    t =     8.80s     Find the "tab.workout" Button
+    t =     8.89s     Check for interrupting elements affecting "tab.workout" Button
+    t =     8.94s     Synthesize event
+    t =     9.25s     Wait for io.github.aydasinem1create.forma to idle
+    t =    10.49s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    10.89s Added attachment named '50-antrenman'
+    t =    10.89s Waiting 8.0s for "workout.start" Button to exist
+    t =    11.90s     Checking `Expect predicate `existsNoRetry == 1` for object "workout.start" Button`
+    t =    11.91s         Checking existence of `"workout.start" Button`
+    t =    12.01s Tap "workout.start" Button
+    t =    12.01s     Wait for io.github.aydasinem1create.forma to idle
+    t =    12.01s     Find the "workout.start" Button
+    t =    12.09s     Check for interrupting elements affecting "workout.start" Button
+    t =    12.16s     Synthesize event
+    t =    12.46s     Wait for io.github.aydasinem1create.forma to idle
+    t =    16.21s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    16.66s Added attachment named '51-aktif-antrenman'
+    t =    16.67s Waiting 8.0s for Button (First Match) to exist
+    t =    17.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    17.71s         Checking existence of `Button (First Match)`
+    t =    17.88s Tap Button (First Match)
+    t =    17.88s     Wait for io.github.aydasinem1create.forma to idle
+    t =    17.88s     Find the Button (First Match)
+    t =    18.03s     Check for interrupting elements affecting "set.complete.0.0" Button
+    t =    18.20s     Synthesize event
+    t =    18.52s     Wait for io.github.aydasinem1create.forma to idle
+    t =    19.53s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    19.86s Added attachment named '52-dinlenme'
+    t =    19.86s Waiting 3.0s for Button (First Match) to exist
+    t =    20.88s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    20.88s         Checking existence of `Button (First Match)`
+    t =    21.01s Tap Button (First Match)
+    t =    21.01s     Wait for io.github.aydasinem1create.forma to idle
+    t =    21.01s     Find the Button (First Match)
+    t =    21.16s     Check for interrupting elements affecting "set.complete.0.1" Button
+    t =    21.27s     Synthesize event
+    t =    21.57s     Wait for io.github.aydasinem1create.forma to idle
+    t =    21.58s Waiting 3.0s for Button (First Match) to exist
+    t =    22.64s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.64s         Checking existence of `Button (First Match)`
+    t =    22.78s Tap Button (First Match)
+    t =    22.78s     Wait for io.github.aydasinem1create.forma to idle
+    t =    22.79s     Find the Button (First Match)
+    t =    22.90s     Check for interrupting elements affecting "set.complete.0.2" Button
+    t =    23.02s     Synthesize event
+    t =    23.37s     Wait for io.github.aydasinem1create.forma to idle
+    t =    23.39s Swipe up Target Application 'io.github.aydasinem1create.forma'
+    t =    23.39s     Wait for io.github.aydasinem1create.forma to idle
+    t =    23.41s     Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    23.64s     Check for interrupting elements affecting "Forma" Application
+    t =    23.75s     Synthesize event
+    t =    24.18s     Wait for io.github.aydasinem1create.forma to idle
+    t =    26.30s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    26.63s Added attachment named '53-aktif-asagi'
+    t =    26.63s Waiting 8.0s for "workout.finish" Button to exist
+    t =    27.66s     Checking `Expect predicate `existsNoRetry == 1` for object "workout.finish" Button`
+    t =    27.66s         Checking existence of `"workout.finish" Button`
+    t =    27.83s Tap "workout.finish" Button
+    t =    27.83s     Wait for io.github.aydasinem1create.forma to idle
+    t =    27.83s     Find the "workout.finish" Button
+    t =    28.00s     Check for interrupting elements affecting "workout.finish" Button
+    t =    28.12s     Synthesize event
+    t =    28.42s     Wait for io.github.aydasinem1create.forma to idle
+    t =    29.62s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    30.22s Added attachment named '54-bitir'
+    t =    30.22s Waiting 8.0s for "workout.save" Button to exist
+    t =    31.26s     Checking `Expect predicate `existsNoRetry == 1` for object "workout.save" Button`
+    t =    31.26s         Checking existence of `"workout.save" Button`
+    t =    31.52s Tap "workout.save" Button
+    t =    31.52s     Wait for io.github.aydasinem1create.forma to idle
+    t =    31.53s     Find the "workout.save" Button
+    t =    32.17s     Check for interrupting elements affecting "workout.save" Button
+    t =    32.45s     Synthesize event
+    t =    32.81s     Wait for io.github.aydasinem1create.forma to idle
+    t =    34.96s Find the Target Application 'io.github.aydasinem1create.forma'
+    t =    35.15s Added attachment named '55-ozet'
+    t =    35.15s Waiting 8.0s for "summary.done" Button to exist
+    t =    36.21s     Checking `Expect predicate `existsNoRetry == 1` for object "summary.done" Button`
+    t =    36.21s         Checking existence of `"summary.done" Button`
+    t =    36.35s Tap "summary.done" Button
+    t =    36.35s     Wait for io.github.aydasinem1create.forma to idle
+    t =    36.35s     Find the "summary.done" Button
+    t =    36.46s     Check for interrupting elements affecting "summary.done" Button
+    t =    36.53s     Synthesize event
+    t =    36.84s     Wait for io.github.aydasinem1create.forma to idle
+    t =    37.16s Waiting 5.0s for "tab.workout" Button to exist
+    t =    38.20s     Checking `Expect predicate `existsNoRetry == 1` for object "tab.workout" Button`
+    t =    38.20s         Checking existence of `"tab.workout" Button`
+    t =    38.33s Tear Down
+Test Case '-[FormaUITests.FormaUITests testWorkoutFlow]' passed (38.728 seconds).
+Test Suite 'FormaUITests' passed at 2026-10-17 11:59:57.183.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 228.702 (228.715) seconds
+Test Suite 'FormaUITests.xctest' passed at 2026-10-17 11:59:57.185.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 228.702 (228.717) seconds
+Test Suite 'Selected tests' passed at 2026-10-17 11:59:57.185.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 228.702 (228.718) seconds
+2026-10-17 11:59:58.854 xcodebuild[20284:64013] [MT] IDETestOperationsObserverDebug: 258.330 elapsed -- Testing started completed.
+2026-10-17 11:59:58.854 xcodebuild[20284:64013] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-17 11:59:58.854 xcodebuild[20284:64013] [MT] IDETestOperationsObserverDebug: 258.330 sec, +258.330 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Spor/Spor/ci-out/UITests.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
