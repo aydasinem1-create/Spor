@@ -3,12 +3,18 @@ name: Derle ve test et
 on:
   push:
     branches: [main]
-  pull_request:
   workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   formakit:
@@ -17,19 +23,24 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: Xcode sürümü
+      - name: Xcode seç
         run: |
-          ls /Applications | grep -i xcode || true
-          LATEST=$(ls -d /Applications/Xcode_*.app | grep -v beta | sort -V | tail -1)
-          echo "Seçilen: $LATEST"
+          LATEST=$(ls -d /Applications/Xcode_*.app | grep -v -i beta | sort -V | tail -1)
           sudo xcode-select -s "$LATEST/Contents/Developer"
-          xcodebuild -version
-          swift --version
+          mkdir -p ci-out
+          { xcodebuild -version; swift --version; } | tee ci-out/versions.log
       - name: Testler
-        run: swift test --package-path Packages/FormaKit 2>&1 | tee formakit-test.log
-      - name: Kayıt
+        run: swift test --package-path Packages/FormaKit 2>&1 | tee ci-out/formakit-test.log
+      - name: Sonuçları yayınla
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: formakit-log
-          path: formakit-test.log
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ci-out
+          echo "${{ github.sha }} ${{ job.status }}" > STATUS
+          git init -q
+          git config user.name "ci"
+          git config user.email "ci@users.noreply.github.com"
+          git add -A
+          git commit -q -m "CI ${{ github.run_id }} ${{ job.status }}"
+          git push -q -f "https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git" HEAD:refs/heads/ci-results/formakit
