@@ -40,11 +40,9 @@ struct NutritionView: View {
                 FoodSearchView(meal: meal).presentationBackground(Theme.background)
             }
             .sheet(item: $editLog) { log in
-                if let food = model.food(log.foodID) ?? fallbackFood(log) {
-                    FoodPortionSheet(food: food, meal: log.meal, editing: log)
-                        .presentationDetents([.medium, .large])
-                        .presentationBackground(Theme.background)
-                }
+                FoodPortionSheet(food: model.food(log.foodID) ?? fallbackFood(log), meal: log.meal, editing: log)
+                    .presentationDetents([.medium, .large])
+                    .presentationBackground(Theme.background)
             }
             .sheet(isPresented: $showWater) { WaterSheet().presentationDetents([.medium, .large]).presentationBackground(Theme.background) }
             .sheet(isPresented: $showSupplements) { NavigationStack { SupplementsView() }.presentationBackground(Theme.background) }
