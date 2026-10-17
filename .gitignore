@@ -1,0 +1,11 @@
+.DS_Store
+.build/
+DerivedData/
+build/
+*.xcodeproj/
+*.xcworkspace/xcuserdata/
+xcuserdata/
+*.ipa
+*.xcresult
+.swiftpm/
+Packages/FormaKit/.build/
