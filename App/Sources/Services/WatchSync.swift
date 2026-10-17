@@ -108,13 +108,13 @@ extension WatchSync: WCSessionDelegate {
     }
 
     nonisolated func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
-        let copy = message.compactMapValues { $0 as? any Sendable }
-        Task { @MainActor in self.handle(message: copy) }
+        let m = WatchMessage(message)
+        Task { @MainActor in self.handle(message: m.dictionary) }
     }
 
     nonisolated func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
-        let copy = userInfo.compactMapValues { $0 as? any Sendable }
-        Task { @MainActor in self.handle(message: copy) }
+        let m = WatchMessage(userInfo)
+        Task { @MainActor in self.handle(message: m.dictionary) }
     }
 }
 
@@ -124,4 +124,31 @@ extension JSONEncoder {
         e.dateEncodingStrategy = .secondsSince1970
         return e
     }()
+}
+
+/// Saatten gelen mesajın aktörler arası güvenle taşınabilen kopyası.
+struct WatchMessage: Sendable {
+    var action: String?
+    var ml: Double?
+    var id: String?
+    var seconds: Int?
+    var bpm: Double?
+
+    init(_ m: [String: Any]) {
+        action = m["action"] as? String
+        ml = m["ml"] as? Double
+        id = m["id"] as? String
+        seconds = m["seconds"] as? Int
+        bpm = m["bpm"] as? Double
+    }
+
+    var dictionary: [String: Any] {
+        var d: [String: Any] = [:]
+        if let action { d["action"] = action }
+        if let ml { d["ml"] = ml }
+        if let id { d["id"] = id }
+        if let seconds { d["seconds"] = seconds }
+        if let bpm { d["bpm"] = bpm }
+        return d
+    }
 }
