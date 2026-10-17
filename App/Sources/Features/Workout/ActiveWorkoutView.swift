@@ -522,12 +522,12 @@ struct RestTimerPanel: View {
             TimelineView(.periodic(from: .now, by: 0.25)) { ctx in
                 let remaining = max(0, end.timeIntervalSince(ctx.date))
                 let total = Double(max(1, model.restTimer.total))
-                HStack(spacing: 14) {
+                HStack(spacing: 10) {
                     ZStack {
-                        RingView(progress: remaining / total, color: Theme.water, lineWidth: 6)
-                        Image(systemName: "timer").font(.system(size: 14, weight: .bold)).foregroundStyle(Theme.water)
+                        RingView(progress: remaining / total, color: Theme.water, lineWidth: 5)
+                        Image(systemName: "timer").font(.system(size: 13, weight: .bold)).foregroundStyle(Theme.water)
                     }
-                    .frame(width: 46, height: 46)
+                    .frame(width: 40, height: 40)
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Dinlenme").eyebrow(Theme.water)
                         Text(Fmt.duration(remaining.rounded(.up))).formaFont(.numberL).monospacedDigit()
@@ -535,12 +535,17 @@ struct RestTimerPanel: View {
                             .contentTransition(.numericText(countsDown: true))
                     }
                     .layoutPriority(1)
-                    Spacer()
-                    Button("−15") { model.adjustRest(by: -15) }.buttonStyle(SecondaryButtonStyle(compact: true))
-                    Button("+15") { model.adjustRest(by: 15) }.buttonStyle(SecondaryButtonStyle(compact: true))
-                    Button { model.skipRest() } label: { Image(systemName: "forward.end.fill") }
-                        .buttonStyle(PrimaryButtonStyle(color: Theme.water, foreground: Theme.background, compact: true))
-                        .accessibilityLabel("Dinlenmeyi atla")
+                    Spacer(minLength: 4)
+                    HStack(spacing: 6) {
+                        Button("−15") { model.adjustRest(by: -15) }.buttonStyle(SecondaryButtonStyle(compact: true))
+                            .accessibilityLabel("15 saniye azalt")
+                        Button("+15") { model.adjustRest(by: 15) }.buttonStyle(SecondaryButtonStyle(compact: true))
+                            .accessibilityLabel("15 saniye ekle")
+                        Button { model.skipRest() } label: { Image(systemName: "forward.end.fill") }
+                            .buttonStyle(PrimaryButtonStyle(color: Theme.water, foreground: Theme.background, compact: true))
+                            .accessibilityLabel("Dinlenmeyi atla")
+                    }
+                    .fixedSize()
                 }
                 .padding(14)
                 .background(Theme.surfaceRaised, in: RoundedRectangle(cornerRadius: 24, style: .continuous))

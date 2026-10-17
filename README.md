@@ -19,6 +19,8 @@ Uygulama her kod değişikliğinde GitHub'ın bulut Mac'lerinde otomatik derleni
 
 **Önemli:** Ücretsiz Apple kimliğiyle yüklenen uygulamalar **7 gün** sonra açılmaz. Telefonu bağlayıp Sideloadly ile tekrar yüklemen yeterli; verilerin silinmez.
 
+Sideloadly hata verirse **Advanced options** bölümünde "Remove watch app" ya da "Remove app extensions" seçeneğini işaretleyip tekrar dene. Ücretsiz Apple kimliği haftada en fazla 10 uygulama kimliği oluşturabildiği için saat ve widget uzantıları bu sınırı doldurabilir.
+
 Ücretsiz yöntemde Apple Watch uygulaması, widget'lar ve Apple Sağlık bağlantısı çalışmayabilir. Bu özellikler için Apple Developer Programı (yıllık 99 ABD doları) ile TestFlight kullanılabilir; kodda değişiklik gerekmez.
 
 ## Özellikler

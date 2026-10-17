@@ -34,24 +34,37 @@ final class FormaUITests: XCTestCase {
 
     // MARK: Kurulum
 
+    /// Geçiş animasyonu bitmeden yapılan dokunuşlar kaybolabildiği için her adımda kısa bekleme.
+    private func next(_ app: XCUIApplication) {
+        let b = app.buttons["onboarding.next"]
+        XCTAssertTrue(b.waitForExistence(timeout: 5))
+        b.tap()
+        usleep(700_000)
+    }
+
     func testOnboardingFlow() throws {
         let app = launch([])
         shot(app, "01-hosgeldin")
-        tap(app.buttons["onboarding.next"])
+        next(app)
         let name = app.textFields["onboarding.name"]
         tap(name)
         name.typeText("Deniz")
         shot(app, "02-tanisma")
-        app.buttons["onboarding.next"].tap()   // boy-kilo
+        next(app)   // boy-kilo
         shot(app, "03-boy-kilo")
-        app.buttons["onboarding.next"].tap()   // hedef
+        next(app)   // hedef
         shot(app, "04-hedef")
-        for _ in 0..<5 { app.buttons["onboarding.next"].tap() }   // deneyim, aktivite, ekipman, odak, plan
+        for _ in 0..<5 { next(app) }   // deneyim, aktivite, ekipman, odak, plan
         shot(app, "05-plan")
-        app.buttons["onboarding.next"].tap()   // hedefler
+        next(app)   // hedefler
         shot(app, "06-hedefler")
-        app.buttons["onboarding.next"].tap()   // bitir
+        // Son adım: ana ekran gelene kadar ilerle
+        var tries = 0
+        while !app.buttons["tab.today"].waitForExistence(timeout: 1.5) && tries < 4 {
+            next(app); tries += 1
+        }
         XCTAssertTrue(app.buttons["tab.today"].waitForExistence(timeout: 8))
+        sleep(1)
         shot(app, "07-ilk-bugun")
     }
 
@@ -151,6 +164,45 @@ final class FormaUITests: XCTestCase {
         shot(app, "64-hareket-detay")
         app.swipeUp()
         shot(app, "65-hareket-form")
+    }
+
+    func testMoreScreens() throws {
+        let app = launch(["-demo"])
+        XCTAssertTrue(app.buttons["tab.today"].waitForExistence(timeout: 10))
+        let readiness = app.buttons.containing(NSPredicate(format: "label CONTAINS 'hissediyorsun' OR label CONTAINS 'Hazır olma'")).firstMatch
+        if readiness.waitForExistence(timeout: 4) {
+            app.swipeUp()
+            if readiness.isHittable { readiness.tap() }
+            sleep(1)
+            shot(app, "13-hazir-olma")
+            app.swipeDown(velocity: .fast)
+            sleep(1)
+        }
+        tap(app.buttons["tab.profile"])
+        let learn = app.buttons.containing(NSPredicate(format: "label CONTAINS 'Bilgi köşesi'")).firstMatch
+        app.swipeUp()
+        if learn.waitForExistence(timeout: 4) {
+            learn.tap()
+            sleep(1)
+            shot(app, "42-bilgi-kosesi")
+            let article = app.buttons.containing(NSPredicate(format: "label CONTAINS[c] 'protein'")).firstMatch
+            if article.waitForExistence(timeout: 3) {
+                article.tap()
+                sleep(1)
+                shot(app, "43-makale")
+                app.swipeUp()
+                shot(app, "44-makale-alt")
+            }
+        }
+        app.terminate()
+        let app2 = launch(["-demo"])
+        tap(app2.buttons["tab.profile"])
+        let supps = app2.buttons.containing(NSPredicate(format: "label CONTAINS 'Takviyeler'")).firstMatch
+        if supps.waitForExistence(timeout: 4) {
+            supps.tap()
+            sleep(1)
+            shot(app2, "45-takviyeler")
+        }
     }
 
     func testLaunchPerformance() throws {
