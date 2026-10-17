@@ -182,9 +182,9 @@ enum KeyboardHelper {
 
 struct SetRowItem: Identifiable {
     var index: Int
-    var set: SetLog
+    var log: SetLog
     var number: Int?
-    var id: UUID { set.id }
+    var id: UUID { log.id }
 }
 
 // MARK: - Hareket kartı
@@ -304,10 +304,10 @@ struct ExerciseCard: View {
         var rows: [SetRowItem] = []
         for (i, s) in sessionExercise.sets.enumerated() {
             if s.kind == .warmup {
-                rows.append(SetRowItem(index: i, set: s, number: nil))
+                rows.append(SetRowItem(index: i, log: s, number: nil))
             } else {
                 workingCounter += 1
-                rows.append(SetRowItem(index: i, set: s, number: workingCounter))
+                rows.append(SetRowItem(index: i, log: s, number: workingCounter))
             }
         }
         return VStack(spacing: 6) {
@@ -324,7 +324,7 @@ struct ExerciseCard: View {
 
             ForEach(rows) { row in
                 let prev: SetLog? = row.number.flatMap { n in previous.indices.contains(n - 1) ? previous[n - 1] : nil }
-                SetRow(exerciseIndex: index, setIndex: row.index, set: row.set, number: row.number, exercise: ex, previous: prev)
+                SetRow(exerciseIndex: index, setIndex: row.index, set: row.log, number: row.number, exercise: ex, previous: prev)
             }
         }
     }
